@@ -44,8 +44,7 @@ const gameBoard = (() => {
 
 const turnControl = (() => {
 
-  let currentTurn = 'Player 1'
-
+  let currentTurn = 'Player 1' 
   // Switches the current to to player 1 or player 2
   function updateTurn() {
     if (currentTurn === 'Player 1') {
@@ -65,3 +64,14 @@ const turnControl = (() => {
     getCurrentTurn
   } 
 })();
+
+
+
+const buttons = document.querySelectorAll('.tile')
+
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    const position = e.target.getAttribute('data-index')
+    console.log(parseInt(position[0]), parseInt(position[1]))
+  })
+})
