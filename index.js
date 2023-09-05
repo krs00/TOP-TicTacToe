@@ -1,9 +1,10 @@
 const gameBoard = (() => {
 
   // gameboard matrix
-  const board = [[null, null, null], 
-                 [null, null, null], 
-                 [null, null, null]]
+  const board =[[null, null, null], 
+                [null, null, null], 
+                [null, null, null]]
+  
 
   // resets the board to a blank slate
   function initializeBoard() { 
@@ -18,20 +19,19 @@ const gameBoard = (() => {
   }
   // lets you place a mark on the gameboard
   function placeMark(a, b, value) {
-
-    if (board[a][b] === null) {
+    // check to see if spot is taken first 
+    if (board[a][b] === null) { 
       board[a][b] = value 
     } else if (board[a][b] !== null ) {
-      console.log('you cant place things here!')
+      console.log(`you can't place things there!`)
     } 
 
     checkGameStatus()
   }
 
   function checkGameStatus() {
-    console.log('hi')
+    
   }
-
 
   return {
     initializeBoard,
@@ -44,18 +44,17 @@ const gameBoard = (() => {
 
 const turnControl = (() => {
 
-  let currentTurn = 'Player 1' 
-  // Switches the current to to player 1 or player 2
+  let currentTurn = 'X' 
+  // Switches the current to to player X or player O
   function updateTurn() {
-    if (currentTurn === 'Player 1') {
-      currentTurn = 'Player 2'
-    } else if (currentTurn === 'Player 2') {
-      currentTurn = 'Player 1'
+    if (currentTurn === 'X') {
+      currentTurn = 'O'
+    } else if (currentTurn === 'O') {
+      currentTurn = 'X' 
     }
   }
 
   function getCurrentTurn() {
-    console.log(currentTurn)
     return currentTurn
   }
 
@@ -65,13 +64,14 @@ const turnControl = (() => {
   } 
 })();
 
+const announceControl = (() => {
+
+  const announceDisplay = document.querySelector('.announce-display')
+  console.log(announceDisplay.innerText)
+
+  return {
+
+  }
+})();
 
 
-const buttons = document.querySelectorAll('.tile')
-
-buttons.forEach((button) => {
-  button.addEventListener('click', (e) => {
-    const position = e.target.getAttribute('data-index')
-    console.log(parseInt(position[0]), parseInt(position[1]))
-  })
-})
