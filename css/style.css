@@ -19,6 +19,7 @@ h1 {
   /* margin: 15px; */
   color: #F9F9F9;
   text-shadow: 4px 4px 0px #0C78FF;
+  user-select: none;
 }
 
 .game-wrapper {
@@ -74,6 +75,7 @@ h1 {
   color: #F9F9F9;
   text-shadow: 4px 4px 0px #0C78FF;
   font-weight: bolder;
+  user-select: none;
 }
 
 .announce-display {
@@ -85,6 +87,7 @@ h1 {
   margin-bottom: 40px; */
   color: #F9F9F9;
   text-shadow: 3px 3px 0px #0C78FF;
+  user-select: none;
 }
 
 .btn-wrapper {
@@ -104,6 +107,7 @@ button {
   font-weight: 700;
   color: white;
   line-height: 26px;
+  user-select: none;
 }
 
 button:active {
@@ -111,7 +115,7 @@ button:active {
 }
 
 img {
-
+  user-select: none;
   display: inline;
   height: 30px; 
   width: 30px;
