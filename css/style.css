@@ -7,13 +7,16 @@ body {
   width: 100vw;
   overflow: hidden;
   background-color: #5a9dd1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 70px;
   white-space: nowrap;
   text-align: center;
-  margin: 15px;
+  /* margin: 15px; */
   color: #F9F9F9;
   text-shadow: 4px 4px 0px #0C78FF;
 }
@@ -64,12 +67,22 @@ h1 {
   text-shadow: 10px 10px 0px #FF7400;
 }
 
+.footer {
+  font-size: 30px;
+  white-space: nowrap;
+  text-align: center;
+  color: #F9F9F9;
+  text-shadow: 4px 4px 0px #0C78FF;
+  font-weight: bolder;
+}
+
 .announce-display {
+  font-weight: bolder;
   font-size: 40px;
   white-space: nowrap;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 40px;
+  /* margin-top: 10px;
+  margin-bottom: 40px; */
   color: #F9F9F9;
   text-shadow: 3px 3px 0px #0C78FF;
 }
@@ -77,12 +90,10 @@ h1 {
 .btn-wrapper {
   display: flex;
   justify-content: center;
-  overflow: hidden;
 }
 
 button {
   font-size: 30px;
-  margin: 75px;
   display: inline-block;
   outline: 0;
   border: 0;
