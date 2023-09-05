@@ -110,6 +110,13 @@ button:active {
   background-color: #FF70B0;
 }
 
+img {
+
+  display: inline;
+  height: 30px; 
+  width: 30px;
+}
+
 
 @media (max-width: 600px) {
   .tile {
