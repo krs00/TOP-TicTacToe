@@ -1,5 +1,10 @@
 const gameBoard = (() => {
 
+  const tiles = document.querySelectorAll('.tile')
+  tiles.forEach((tile) => {
+    tile.addEventListener('click', placeMark)
+  })
+
   // gameboard matrix
   const board =[[null, null, null], 
                 [null, null, null], 
@@ -7,26 +12,36 @@ const gameBoard = (() => {
   
 
   // resets the board to a blank slate
-  function initializeBoard() { 
-    
-    const initialValue = null
+  function initializeBoard() {
 
+    const initialValue = null
       for (let i = 0; i < board.length; i++){
         for (let j = 0; j < board[i].length; j++) {
           board[i][j] = initialValue
         }
       }
   }
-  // lets you place a mark on the gameboard
-  function placeMark(a, b, value) {
-    // check to see if spot is taken first 
-    if (board[a][b] === null) { 
-      board[a][b] = value 
-    } else if (board[a][b] !== null ) {
-      console.log(`you can't place things there!`)
-    } 
 
-    checkGameStatus()
+  // lets you place a mark on the gameboard
+  function placeMark(e) {
+
+    e.target.appendChild(createElement()) 
+    const pos1 = parseInt(e.target.getAttribute('data-index')[0])
+    const pos2 = parseInt(e.target.getAttribute('data-index')[1])
+    board[pos1][pos2] = `${turnControl.getCurrentTurn()}`
+    turnControl.updateTurn()
+    announceControl.update() 
+    
+    // console.log(board)
+    // console.log(`Player ${turnControl.getCurrentTurn()}'s turn`)
+  }
+
+  // creates element to be appended to DOM
+  function createElement() { 
+      const span = document.createElement('span')
+      span.classList.add(`${turnControl.getCurrentTurn()}marker`)
+      span.innerText = `${turnControl.getCurrentTurn()}`
+      return span
   }
 
   function checkGameStatus() {
@@ -37,7 +52,8 @@ const gameBoard = (() => {
     initializeBoard,
     placeMark,
     checkGameStatus,
-    board
+    board,
+    createElement
   }; 
 })(); 
 
@@ -64,12 +80,18 @@ const turnControl = (() => {
   } 
 })();
 
+
+
 const announceControl = (() => {
 
-  const announceDisplay = document.querySelector('.announce-display')
-  console.log(announceDisplay.innerText)
+  let display = document.querySelector('.announce-display') 
+  
+  function update() {
+    display.innerText = `Player ${turnControl.getCurrentTurn()}'s turn`
+  }
 
   return {
+    update
 
   }
 })();
