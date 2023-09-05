@@ -5,6 +5,12 @@ const gameBoard = (() => {
     tile.addEventListener('click', placeMark)
   })
 
+  const restart = document.querySelector('.restart-btn')
+
+  restart.addEventListener('click', initializeBoard)
+
+
+
   // gameboard matrix
   const board =[[null, null, null], 
                 [null, null, null], 
@@ -13,26 +19,40 @@ const gameBoard = (() => {
 
   // resets the board to a blank slate
   function initializeBoard() {
-
+ 
     const initialValue = null
       for (let i = 0; i < board.length; i++){
         for (let j = 0; j < board[i].length; j++) {
           board[i][j] = initialValue
         }
       }
+
+      tiles.forEach((tile) => {
+    
+        if (tile.hasChildNodes()) {
+          tile.childNodes[0].remove();
+        }
+  
+      })  
+
+      announceControl.initialize()
+      turnControl.initialize()
+
   }
 
   // lets you place a mark on the gameboard
   function placeMark(e) {
 
-    e.target.appendChild(createElement()) 
+  if (e.target.hasChildNodes() == false) {
+    e.target.appendChild(createElement())
     const pos1 = parseInt(e.target.getAttribute('data-index')[0])
     const pos2 = parseInt(e.target.getAttribute('data-index')[1])
     board[pos1][pos2] = `${turnControl.getCurrentTurn()}`
     turnControl.updateTurn()
-    announceControl.update() 
+    announceControl.update()
+    }
     
-    // console.log(board)
+    console.log(board)
     // console.log(`Player ${turnControl.getCurrentTurn()}'s turn`)
   }
 
@@ -45,7 +65,7 @@ const gameBoard = (() => {
   }
 
   function checkGameStatus() {
-    
+    console.log('hello')
   }
 
   return {
@@ -74,9 +94,14 @@ const turnControl = (() => {
     return currentTurn
   }
 
+  function initialize() {
+    currentTurn = 'X'
+  }
+
   return {
     updateTurn,
-    getCurrentTurn
+    getCurrentTurn,
+    initialize 
   } 
 })();
 
@@ -90,8 +115,13 @@ const announceControl = (() => {
     display.innerText = `Player ${turnControl.getCurrentTurn()}'s turn`
   }
 
+  function initialize() {
+    display.innerText = `Player X's turn`
+  }
+
   return {
-    update
+    update,
+    initialize
 
   }
 })();
