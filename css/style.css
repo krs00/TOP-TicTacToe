@@ -5,17 +5,29 @@ body {
   font-family: Helvetica, sans-serif;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
+  background-color: #5a9dd1;
 }
 
 h1 {
   font-size: 60px;
+  white-space: nowrap;
+  text-align: center;
+  margin: 15px;
+  color: #F9F9F9;
+  text-shadow: 4px 4px 0px #0C78FF;
+}
+
+.game-wrapper {
+  display: flex;
+  justify-content: center;
+
 }
 
 .game-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  width: 300px;
   gap: 5px;
 }
 
@@ -23,7 +35,7 @@ h1 {
 .tile {
   height: 175px;
   width: 175px;
-  background-color: #C0C0C0;
+  background-color: #edf7ff;
   border-radius: 4px;
   transition: 0.3s;
   display: flex;
@@ -35,26 +47,72 @@ h1 {
   user-select: none;
   
   color: black;
-  
 }
 
 
 .tile:hover {
-  background-color: #969696;
+  background-color: #a3b8d9;
 }
 
-.p1marker {
-  text-shadow: 10px 10px 0px #FF00FF; 
+.Xmarker {
+  color: black;
+  text-shadow: 10px 10px 0px #0C78FF; 
 }
 
-.p2marker {
-  text-shadow: 10px 10px 0px #00FF00; 
+.Omarker {
+  color: black;
+  text-shadow: 10px 10px 0px #FF7400;
 }
 
 .announce-display {
-  font-size: 40px; 
+  font-size: 40px;
+  white-space: nowrap;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  color: #F9F9F9;
+  text-shadow: 3px 3px 0px #0C78FF;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
 }
 
 button {
-  font-size: 40px;
+  font-size: 30px;
+  margin: 75px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: #FF93C2;
+  border-radius: 4px;
+  padding: 20px 40px;
+  font-weight: 700;
+  color: white;
+  line-height: 26px;
+}
+
+button:active {
+  background-color: #FF70B0;
+}
+
+
+@media (max-width: 600px) {
+  .tile {
+    height: 142px;
+    width: 142px;
+    font-size: 675%;
+  }
+
+  .tile:hover {
+    background-color: #edf7ff;
+  }
+
+  .tile:active {
+    background-color: #a3b8d9;
+  }
+
 }
