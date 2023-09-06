@@ -32,23 +32,17 @@ const gameBoard = (() => {
         if (tile.hasChildNodes()) {
           tile.childNodes[0].remove();
         }
-      })  
-
+      })
       announceControl.initialize()
       turnControl.initialize()
-
   }
-
   // lets you place a mark on the gameboard
   function placeMark(e) {
-
-
   if (e.target.hasChildNodes() == false) {
     e.target.appendChild(createElement())
     const pos1 = parseInt(e.target.getAttribute('data-index')[0])
     const pos2 = parseInt(e.target.getAttribute('data-index')[1])
     board[pos1][pos2] = `${turnControl.getCurrentTurn()}`
-
   
     let win = checkWinner(turnControl.getCurrentTurn())
 
@@ -90,7 +84,6 @@ const gameBoard = (() => {
         let ans =  win.every(i => i === turn)
         if (ans === true) {
           didPlayerWin = true
-          console.log(`${turn} wins`)
         }
     })
     return didPlayerWin
@@ -128,7 +121,7 @@ const gameBoard = (() => {
   }; 
 })(); 
 
-
+ 
 const turnControl = (() => {
 
   let currentTurn = 'X' 
