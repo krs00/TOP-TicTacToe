@@ -151,4 +151,8 @@ img:hover {
     background-color: #a3b8d9;
   }
 
+  button {
+    font-size: 25px;
+    padding: 15px 35px;
+  }
 }
