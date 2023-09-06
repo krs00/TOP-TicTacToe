@@ -136,10 +136,15 @@ img:hover {
 }
 
 
-@media (max-width: 1000px) { 
+@media only screen and (max-width: 600px) { 
+
+  h1 {
+    font-size: 60px;
+  }
+
   .tile {
-    height: 142px;
-    width: 142px;
+    height: 110px;
+    width: 110px;
     font-size: 675%;
   }
 
