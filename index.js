@@ -48,12 +48,10 @@ const gameBoard = (() => {
     const pos1 = parseInt(e.target.getAttribute('data-index')[0])
     const pos2 = parseInt(e.target.getAttribute('data-index')[1])
     board[pos1][pos2] = `${turnControl.getCurrentTurn()}`
+    checkWinner(turnControl.getCurrentTurn())
     turnControl.updateTurn()
     announceControl.update()
     }
-    
-    console.log(board)
-    // console.log(`Player ${turnControl.getCurrentTurn()}'s turn`)
   }
 
   // creates element to be appended to DOM
@@ -64,6 +62,26 @@ const gameBoard = (() => {
       return span
   }
 
+  function checkWinner(turn) {
+    
+    const b = board; 
+    const dWin1 = [b[0][0], b[1][1], b[2][2]] 
+    const dWin2 = [b[2][0], b[1][1], b[0][2]] 
+    const row1 = b[0], row2 = b[1], row3 = b[2]
+    const col1 = [b[0][0], b[1][0], b[2][0]] 
+    const col2 = [b[0][1], b[1][1], b[2][1]]
+    const col3 = [b[0][2], b[1][2], b[2][2]] 
+    
+    const wins = [dWin1, dWin2, row1, row2, row3, col1, col2, col3]
+    wins.forEach(win => {
+        let ans =  win.every(i => i === turn)
+        if (ans === true) {
+          console.log(win)
+        }
+    })
+  }
+
+
   function checkGameStatus() {
     console.log('hello')
   }
@@ -73,7 +91,8 @@ const gameBoard = (() => {
     placeMark,
     checkGameStatus,
     board,
-    createElement
+    createElement,
+    checkWinner 
   }; 
 })(); 
 
