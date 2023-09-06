@@ -1,5 +1,9 @@
 # Tic Tac Toe
 
+## Live Demo
+ 
+[Click here to play!](https://krs00.github.io/TOP-TicTacToe/) 
+
 ## Technologies Used
 
 * HTML
