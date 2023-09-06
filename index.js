@@ -17,6 +17,7 @@ const gameBoard = (() => {
                 [null, null, null]]
   
 
+  
   // resets the board to a blank slate
   function initializeBoard() {
  
@@ -28,11 +29,9 @@ const gameBoard = (() => {
       }
 
       tiles.forEach((tile) => {
-    
         if (tile.hasChildNodes()) {
           tile.childNodes[0].remove();
         }
-  
       })  
 
       announceControl.initialize()
@@ -43,14 +42,26 @@ const gameBoard = (() => {
   // lets you place a mark on the gameboard
   function placeMark(e) {
 
+
   if (e.target.hasChildNodes() == false) {
     e.target.appendChild(createElement())
     const pos1 = parseInt(e.target.getAttribute('data-index')[0])
     const pos2 = parseInt(e.target.getAttribute('data-index')[1])
     board[pos1][pos2] = `${turnControl.getCurrentTurn()}`
-    checkWinner(turnControl.getCurrentTurn())
-    turnControl.updateTurn()
-    announceControl.update()
+
+  
+    let win = checkWinner(turnControl.getCurrentTurn())
+
+    if (win == true) {
+      disableMarking()  
+      announceControl.win()  
+    } else if (win == undefined && tie() === 9) {
+      announceControl.draw() 
+    } else if (win === undefined) {
+      turnControl.updateTurn() 
+      announceControl.update()
+    }
+
     }
   }
 
@@ -73,26 +84,47 @@ const gameBoard = (() => {
     const col3 = [b[0][2], b[1][2], b[2][2]] 
     
     const wins = [dWin1, dWin2, row1, row2, row3, col1, col2, col3]
+    let didPlayerWin 
     wins.forEach(win => {
+        didPlayerWin
         let ans =  win.every(i => i === turn)
         if (ans === true) {
-          console.log(win)
+          didPlayerWin = true
+          console.log(`${turn} wins`)
         }
+    })
+    return didPlayerWin
+  }
+
+
+  function disableMarking() {
+    tiles.forEach((tile) => {
+      if (tile.hasChildNodes() === false) {
+        const span = document.createElement('span')
+        tile.appendChild(span)
+      }
     })
   }
 
-
-  function checkGameStatus() {
-    console.log('hello')
+  function tie() {
+    let count = 0
+    tiles.forEach(tile => {
+      if (tile.hasChildNodes()) {
+        count++;
+      }
+    })
+    return count
   }
 
+
   return {
+    tie,
     initializeBoard,
     placeMark,
-    checkGameStatus,
     board,
     createElement,
-    checkWinner 
+    checkWinner,
+    disableMarking
   }; 
 })(); 
 
@@ -129,20 +161,29 @@ const turnControl = (() => {
 const announceControl = (() => {
 
   let display = document.querySelector('.announce-display') 
-  
   function update() {
     display.innerText = `Player ${turnControl.getCurrentTurn()}'s turn`
   }
-
+  function draw() {
+    display.innerText = `It's a draw!`
+  }
   function initialize() {
     display.innerText = `Player X's turn`
   }
 
+  function win() {
+    display.innerText = `${turnControl.getCurrentTurn()} wins!` 
+  }
+
   return {
     update,
-    initialize
-
+    initialize,
+    draw,
+    win 
   }
 })();
+
+// code is pretty spaghetti on this one, but I learned a lot and got good practice in!
+// will come back and iterate later!
 
 
