@@ -136,7 +136,7 @@ img:hover {
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) { 
   .tile {
     height: 142px;
     width: 142px;
@@ -153,6 +153,7 @@ img:hover {
 
   button {
     font-size: 25px;
+    margin-top: 5px;
     padding: 15px 35px;
   }
 }
